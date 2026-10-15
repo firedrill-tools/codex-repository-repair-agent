@@ -1,0 +1,15 @@
+{
+  "name": "codex-repository-repair-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "repair": "node src/cli.js",
+    "test": "node --test test/*.test.js",
+    "check": "npm test"
+  },
+  "dependencies": {
+    "@openai/codex-sdk": "0.162.1"
+  }
+}
