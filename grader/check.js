@@ -10,6 +10,8 @@ const cases = [
   [{ items: [{ unitCents: 6500, quantity: 1 }], couponPercent: 20 }, 0, 5200],
   [{ items: [{ unitCents: 4999, quantity: 1 }] }, 700, 5699],
   [{ items: [{ unitCents: 333, quantity: 3 }], couponPercent: 10 }, 700, 1599],
+  [{ items: [{ unitCents: 6250, quantity: 1 }], couponPercent: 20 }, 0, 5000],
+  [{ items: [{ unitCents: 6000, quantity: 1 }], couponPercent: 100 }, 700, 700],
 ];
 for (const [input, shipping, total] of cases) {
   const result = quoteOrder(input);

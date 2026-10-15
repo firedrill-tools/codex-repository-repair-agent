@@ -1,0 +1,7 @@
+{
+  "effectiveOn": "2026-10-01",
+  "status": "current",
+  "shippingThresholdCents": 5000,
+  "basis": "before_coupon",
+  "owner": "Checkout Operations"
+}

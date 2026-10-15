@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, writeFile, readFile, rm } from 'node:fs/promises';
+import { mkdtemp, writeFile, readFile, rm, stat } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { Codex } from '@openai/codex-sdk';
@@ -15,7 +15,7 @@ async function fixture(t, mode) {
 const fs = require('node:fs'); const path = require('node:path');
 const args = process.argv.slice(2), mode = process.env.SYNTHETIC_MODE;
 const directory = args[args.indexOf('--cd') + 1];
-fs.writeFileSync(process.env.CHILD_RECORD, JSON.stringify({ pid: process.pid, args }));
+fs.writeFileSync(process.env.CHILD_RECORD, JSON.stringify({ pid: process.pid, args, runtime_home: process.env.CODEX_HOME || null, has_provider_key: Boolean(process.env.CODEX_API_KEY), env_keys: Object.keys(process.env) }));
 process.stdin.resume(); process.stdin.on('end', () => {
   const send = (value) => console.log(JSON.stringify(value));
   send({ type: 'thread.started', thread_id: 'synthetic-thread' }); send({ type: 'turn.started' });
@@ -25,6 +25,7 @@ process.stdin.resume(); process.stdin.on('end', () => {
     send({ type: 'item.completed', item: { id: 'file-1', type: 'file_change', status: 'completed', changes: [{ path: 'src/quote.js', kind: 'update' }] } });
   }
   if (mode === 'failed-after-edit') { send({ type: 'turn.failed', error: { message: 'synthetic failure after edit' } }); return; }
+  if (mode === 'external-tool') send({ type: 'item.started', item: { id: 'external-1', type: 'mcp_tool_call', server: 'synthetic', tool: 'unknown_action', status: 'in_progress' } });
   if (mode === 'pending') send({ type: 'item.started', item: { id: 'cmd-1', type: 'command_execution', status: 'in_progress', command: 'npm test' } });
   send({ type: 'item.completed', item: { id: 'message-1', type: 'agent_message', text: mode === 'blank' ? ' ' : 'Controlled final answer' } });
   if (mode === 'missing-terminal') return;
@@ -36,7 +37,7 @@ process.stdin.resume(); process.stdin.on('end', () => {
   const record = path.join(temp, 'child.json');
   const sdk = new Codex({ codexPathOverride: child, env: { PATH: process.env.PATH, SYNTHETIC_MODE: mode, CHILD_RECORD: record } });
   t.after(() => rm(temp, { recursive: true, force: true }));
-  return { sdk, temp, record };
+  return { sdk, temp, record, child };
 }
 async function stopped(record) {
   const { pid } = JSON.parse(await readFile(record));
@@ -64,7 +65,7 @@ test('actual native SDK protocol completes a bounded repair and retains SDK usag
   await stopped(f.record);
 });
 
-for (const mode of ['missing-terminal', 'blank', 'pending', 'malformed', 'failed-after-edit', 'hang']) test(`native ${mode} cannot pass and retains partial observations`, async t => {
+for (const mode of ['missing-terminal', 'blank', 'pending', 'malformed', 'failed-after-edit', 'hang', 'external-tool']) test(`native ${mode} cannot pass and retains partial observations`, async t => {
   const f = await fixture(t, mode);
   const report = await runScenario({ scenario: mode === 'failed-after-edit' ? 'repair' : 'incomplete', outputRoot: f.temp,
     timeoutMs: mode === 'hang' ? 1000 : 5000,
@@ -77,6 +78,35 @@ for (const mode of ['missing-terminal', 'blank', 'pending', 'malformed', 'failed
     assert.equal(report.agentResult.events.at(-1).type, 'turn.failed');
   }
   if (mode === 'missing-terminal') assert.match(report.agentError, /without turn.completed/);
+  if (mode === 'external-tool') { assert.equal(report.agentResult.external_effect_status, 'unknown'); assert.equal(report.agentResult.events.at(-1).item.type, 'mcp_tool_call'); }
   assert.deepEqual(JSON.parse(await readFile(report.reportPath)), report);
   await stopped(f.record);
+});
+
+
+test('normal runtime isolates Codex configuration and removes its owned home without changing caller settings', async t => {
+  const f = await fixture(t, 'repair'); let configuration;
+  const report = await runScenario({ outputRoot: f.temp, agent: (workspace, scenario, options) => runCodex(workspace, scenario, {
+    ...options, apiKey: 'synthetic-not-a-secret', sdkFactory: (input) => {
+      configuration = input;
+      return new Codex({ ...input, codexPathOverride: f.child, env: { ...input.env, SYNTHETIC_MODE: 'repair', CHILD_RECORD: f.record } });
+    },
+  }) });
+  t.after(() => rm(report.workspace, { recursive: true, force: true }));
+  assert.equal(report.passed, true, JSON.stringify(report));
+  assert.deepEqual(Object.keys(configuration.env).filter(key => !['SystemRoot','WINDIR'].includes(key)).sort(), ['CODEX_HOME','PATH']);
+  assert.equal(report.agentResult.runtime_home_removed, true);
+  await assert.rejects(stat(configuration.env.CODEX_HOME), error => error.code === 'ENOENT');
+  const record = JSON.parse(await readFile(f.record)); assert.equal(record.runtime_home, configuration.env.CODEX_HOME); assert.equal(record.has_provider_key, true);
+  await stopped(f.record);
+});
+
+test('owned runtime startup failure retains evidence and removes its private configuration home', async t => {
+  const f = await fixture(t, 'repair'); let runtimeHome;
+  const report = await runScenario({ outputRoot: f.temp, agent: (workspace, scenario, options) => runCodex(workspace, scenario, {
+    ...options, apiKey: 'synthetic-not-a-secret', sdkFactory: configuration => { runtimeHome = configuration.env.CODEX_HOME; throw new Error('synthetic SDK startup failure'); },
+  }) });
+  t.after(() => rm(report.workspace, { recursive: true, force: true }));
+  assert.equal(report.passed, false); assert.match(report.agentError, /SDK startup/); assert.equal(report.agentResult.runtime_home_removed, true);
+  await assert.rejects(stat(runtimeHome), error => error.code === 'ENOENT');
 });

@@ -1,0 +1,458 @@
+[
+  {
+    "id": "order-501",
+    "customerId": "c-101",
+    "placedAt": "2026-08-01T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 2900,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 0,
+    "subtotalCents": 2900,
+    "discountCents": 0,
+    "shippingCents": 700,
+    "totalCents": 3600
+  },
+  {
+    "id": "order-502",
+    "customerId": "c-102",
+    "placedAt": "2026-08-02T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 3075,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 10,
+    "subtotalCents": 6150,
+    "discountCents": 615,
+    "shippingCents": 0,
+    "totalCents": 5535
+  },
+  {
+    "id": "order-503",
+    "customerId": "c-103",
+    "placedAt": "2026-08-03T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 3250,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 20,
+    "subtotalCents": 3250,
+    "discountCents": 650,
+    "shippingCents": 700,
+    "totalCents": 3300
+  },
+  {
+    "id": "order-504",
+    "customerId": "c-104",
+    "placedAt": "2026-08-04T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 3425,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 0,
+    "subtotalCents": 6850,
+    "discountCents": 0,
+    "shippingCents": 0,
+    "totalCents": 6850
+  },
+  {
+    "id": "order-505",
+    "customerId": "c-105",
+    "placedAt": "2026-08-05T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 3600,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 10,
+    "subtotalCents": 3600,
+    "discountCents": 360,
+    "shippingCents": 700,
+    "totalCents": 3940
+  },
+  {
+    "id": "order-506",
+    "customerId": "c-106",
+    "placedAt": "2026-08-06T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 3775,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 20,
+    "subtotalCents": 7550,
+    "discountCents": 1510,
+    "shippingCents": 0,
+    "totalCents": 6040
+  },
+  {
+    "id": "order-507",
+    "customerId": "c-107",
+    "placedAt": "2026-08-07T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 3950,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 0,
+    "subtotalCents": 3950,
+    "discountCents": 0,
+    "shippingCents": 700,
+    "totalCents": 4650
+  },
+  {
+    "id": "order-508",
+    "customerId": "c-108",
+    "placedAt": "2026-08-08T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 4125,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 10,
+    "subtotalCents": 8250,
+    "discountCents": 825,
+    "shippingCents": 0,
+    "totalCents": 7425
+  },
+  {
+    "id": "order-509",
+    "customerId": "c-101",
+    "placedAt": "2026-08-09T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 4300,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 20,
+    "subtotalCents": 4300,
+    "discountCents": 860,
+    "shippingCents": 700,
+    "totalCents": 4140
+  },
+  {
+    "id": "order-510",
+    "customerId": "c-102",
+    "placedAt": "2026-08-10T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 4475,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 0,
+    "subtotalCents": 8950,
+    "discountCents": 0,
+    "shippingCents": 0,
+    "totalCents": 8950
+  },
+  {
+    "id": "order-511",
+    "customerId": "c-103",
+    "placedAt": "2026-08-11T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 4650,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 10,
+    "subtotalCents": 4650,
+    "discountCents": 465,
+    "shippingCents": 700,
+    "totalCents": 4885
+  },
+  {
+    "id": "order-512",
+    "customerId": "c-104",
+    "placedAt": "2026-08-12T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 4825,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 20,
+    "subtotalCents": 9650,
+    "discountCents": 1930,
+    "shippingCents": 0,
+    "totalCents": 7720
+  },
+  {
+    "id": "order-513",
+    "customerId": "c-105",
+    "placedAt": "2026-08-13T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 5000,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 0,
+    "subtotalCents": 5000,
+    "discountCents": 0,
+    "shippingCents": 0,
+    "totalCents": 5000
+  },
+  {
+    "id": "order-514",
+    "customerId": "c-106",
+    "placedAt": "2026-08-14T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 5175,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 10,
+    "subtotalCents": 10350,
+    "discountCents": 1035,
+    "shippingCents": 0,
+    "totalCents": 9315
+  },
+  {
+    "id": "order-515",
+    "customerId": "c-107",
+    "placedAt": "2026-08-15T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 5350,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 20,
+    "subtotalCents": 5350,
+    "discountCents": 1070,
+    "shippingCents": 0,
+    "totalCents": 4280
+  },
+  {
+    "id": "order-516",
+    "customerId": "c-108",
+    "placedAt": "2026-08-16T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 5525,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 0,
+    "subtotalCents": 11050,
+    "discountCents": 0,
+    "shippingCents": 0,
+    "totalCents": 11050
+  },
+  {
+    "id": "order-517",
+    "customerId": "c-101",
+    "placedAt": "2026-08-17T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 5700,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 10,
+    "subtotalCents": 5700,
+    "discountCents": 570,
+    "shippingCents": 0,
+    "totalCents": 5130
+  },
+  {
+    "id": "order-518",
+    "customerId": "c-102",
+    "placedAt": "2026-08-18T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 5875,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 20,
+    "subtotalCents": 11750,
+    "discountCents": 2350,
+    "shippingCents": 0,
+    "totalCents": 9400
+  },
+  {
+    "id": "order-519",
+    "customerId": "c-103",
+    "placedAt": "2026-08-19T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 6050,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 0,
+    "subtotalCents": 6050,
+    "discountCents": 0,
+    "shippingCents": 0,
+    "totalCents": 6050
+  },
+  {
+    "id": "order-520",
+    "customerId": "c-104",
+    "placedAt": "2026-08-20T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 6225,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 10,
+    "subtotalCents": 12450,
+    "discountCents": 1245,
+    "shippingCents": 0,
+    "totalCents": 11205
+  },
+  {
+    "id": "order-521",
+    "customerId": "c-105",
+    "placedAt": "2026-08-21T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 6400,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 20,
+    "subtotalCents": 6400,
+    "discountCents": 1280,
+    "shippingCents": 0,
+    "totalCents": 5120
+  },
+  {
+    "id": "order-522",
+    "customerId": "c-106",
+    "placedAt": "2026-08-22T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 6575,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 0,
+    "subtotalCents": 13150,
+    "discountCents": 0,
+    "shippingCents": 0,
+    "totalCents": 13150
+  },
+  {
+    "id": "order-523",
+    "customerId": "c-107",
+    "placedAt": "2026-08-23T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 6750,
+        "quantity": 1
+      }
+    ],
+    "couponPercent": 10,
+    "subtotalCents": 6750,
+    "discountCents": 675,
+    "shippingCents": 0,
+    "totalCents": 6075
+  },
+  {
+    "id": "order-524",
+    "customerId": "c-108",
+    "placedAt": "2026-08-24T10:00:00Z",
+    "currency": "USD",
+    "policyVersion": "2026-04-pre-coupon",
+    "status": "completed",
+    "items": [
+      {
+        "unitCents": 6925,
+        "quantity": 2
+      }
+    ],
+    "couponPercent": 20,
+    "subtotalCents": 13850,
+    "discountCents": 2770,
+    "shippingCents": 0,
+    "totalCents": 11080
+  }
+]

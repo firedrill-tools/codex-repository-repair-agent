@@ -1,0 +1,50 @@
+[
+  {
+    "id": "c-101",
+    "name": "Mira Chen",
+    "email": "mira.chen@atlas.example",
+    "currency": "USD"
+  },
+  {
+    "id": "c-102",
+    "name": "Leo Hart",
+    "email": "leo.hart@atlas.example",
+    "currency": "USD"
+  },
+  {
+    "id": "c-103",
+    "name": "Priya Shah",
+    "email": "priya.shah@atlas.example",
+    "currency": "USD"
+  },
+  {
+    "id": "c-104",
+    "name": "Nadia Cole",
+    "email": "nadia.cole@atlas.example",
+    "currency": "USD"
+  },
+  {
+    "id": "c-105",
+    "name": "Owen Marsh",
+    "email": "owen.marsh@atlas.example",
+    "currency": "USD"
+  },
+  {
+    "id": "c-106",
+    "name": "Inez Park",
+    "email": "inez.park@atlas.example",
+    "currency": "USD"
+  },
+  {
+    "id": "c-107",
+    "name": "Eli Brooks",
+    "email": "eli.brooks@atlas.example",
+    "currency": "USD"
+  },
+  {
+    "id": "c-108",
+    "name": "Noor Stone",
+    "email": "noor.stone@atlas.example",
+    "currency": "USD"
+  }
+]

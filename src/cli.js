@@ -10,7 +10,7 @@ function parse() {
   }
   return options;
 }
-if (args.length === 1 && args[0] === '--help') console.log('Usage: npm run repair -- [--scenario repair|incomplete] [--model MODEL] [--timeout-ms 10..180000] [--output-root DIR]');
+if (args.length === 1 && args[0] === '--help') console.log('Usage: npm run repair -- [--scenario CASE] [--model MODEL] [--timeout-ms 10..180000] [--output-root DIR]');
 else {
   const controller = new AbortController(), stop = () => controller.abort(new Error('CLI interrupted'));
   process.once('SIGINT', stop); process.once('SIGTERM', stop);

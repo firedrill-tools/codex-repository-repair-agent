@@ -1,13 +1,19 @@
 {
   "name": "codex-repository-repair-agent",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "repair": "node src/cli.js",
     "test": "node --test test/*.test.js",
-    "check": "npm test"
+    "check": "npm test",
+    "datasets": "node src/datasets.js",
+    "fixtures:build": "node scripts/build-datasets.js",
+    "package": "node scripts/package.js",
+    "check:package": "node scripts/check-package.js"
   },
   "dependencies": {
     "@openai/codex-sdk": "0.162.1"

@@ -1,0 +1,14 @@
+{
+  "id": "request-801",
+  "customerId": "c-101",
+  "receivedAt": "2026-10-14T12:00:00Z",
+  "currency": "USD",
+  "items": [
+    {
+      "unitCents": 6000,
+      "quantity": 1
+    }
+  ],
+  "couponPercent": 20,
+  "issue": "Current policy should charge shipping after the coupon moves this cart below 5000 cents."
+}
