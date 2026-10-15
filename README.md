@@ -33,3 +33,5 @@ The `repair` scenario asks for the current shipping policy and expects only `src
 `npm test` exercises the seeded failure, a scripted bounded repair, the external grader, an unrelated-file violation, and the incomplete-request boundary. A successful real SDK repair is recorded in [evidence/live-repair.md](evidence/live-repair.md); the local `.runs` report provides its full event summary. The grader is outside the agent's working directory and is not included in the task prompt. It is not a secrecy mechanism against broad filesystem reads.
 
 The application is useful without Firedrill. A Firedrill adapter and persisted live scenarios will be added after the new release's interface is qualified. No legacy Firedrill client is included.
+
+Explore related applications in the [Firedrill example catalog](https://github.com/firedrill-tools/firedrill-example-catalog). Product and setup references: [Firedrill](https://firedrill.run/) and the [official developer documentation](https://docs.firedrill.run/). Use documentation matching the qualified release; this repository records its current integration limits above.
