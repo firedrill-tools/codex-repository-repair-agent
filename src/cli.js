@@ -1,24 +1,24 @@
-import { mkdir, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
 import { runScenario } from './repair.js';
 
 const args = process.argv.slice(2);
-function option(name, fallback) {
-  const i = args.indexOf(name);
-  return i < 0 ? fallback : args[i + 1];
+function parse() {
+  const options = {};
+  for (let i = 0; i < args.length; i += 2) {
+    const key = { '--scenario': 'scenario', '--model': 'model', '--timeout-ms': 'timeoutMs', '--output-root': 'outputRoot' }[args[i]];
+    if (!key || !args[i + 1] || args[i + 1].startsWith('--') || Object.hasOwn(options, key)) throw new Error('Invalid options; use --help');
+    options[key] = key === 'timeoutMs' ? Number(args[i + 1]) : args[i + 1];
+  }
+  return options;
 }
-const scenario = option('--scenario', 'repair');
-const model = option('--model', undefined);
-const report = await runScenario({ scenario, model });
-await mkdir('.runs', { recursive: true });
-const reportPath = join('.runs', `report-${Date.now()}.json`);
-await writeFile(reportPath, JSON.stringify(report, null, 2));
-console.log(JSON.stringify({
-  passed: report.passed,
-  scenario: report.scenario,
-  workspace: report.workspace,
-  changedPaths: report.verification.paths,
-  agentError: report.agentError,
-  reportPath,
-}, null, 2));
-if (!report.passed) process.exitCode = 1;
+if (args.length === 1 && args[0] === '--help') console.log('Usage: npm run repair -- [--scenario repair|incomplete] [--model MODEL] [--timeout-ms 10..180000] [--output-root DIR]');
+else {
+  const controller = new AbortController(), stop = () => controller.abort(new Error('CLI interrupted'));
+  process.once('SIGINT', stop); process.once('SIGTERM', stop);
+  try {
+    const report = await runScenario({ ...parse(), signal: controller.signal });
+    console.log(JSON.stringify({ passed: report.passed, scenario: report.scenario, workspace: report.workspace,
+      changedPaths: report.verification?.paths ?? null, agentError: report.agentError, runnerError: report.runnerError ?? null, reportPath: report.reportPath }, null, 2));
+    if (!report.passed) process.exitCode = 1;
+  } catch (error) { console.error(JSON.stringify({ error: error.message, reportPath: error.report?.reportPath ?? null })); process.exitCode = 1; }
+  finally { process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop); }
+}

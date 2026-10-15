@@ -1,7 +1,10 @@
-# Working rules
+# Working on repository repair
 
-This repository is a standalone example application. Keep all checkout files synthetic. Do not introduce real customer data, credentials, or a dependency on the retired Firedrill integration.
-
-The agent target is the disposable `seed/` copy. `grader/` must remain outside that copied checkout. Keep the changed-file allowlist narrow and test it with a real Git diff. Do not report scripted tests as live Codex proof.
-
-Before claiming a live run, inspect the `.runs` report, its changed paths, public/private check exits, SDK error and usage. Add any future Firedrill integration only against a verified new release.
+- `src/cli.js` invokes `runScenario` in `src/repair.js`. Dependencies are locked; `@openai/codex-sdk` is 0.162.1. `npm test`/`--help` are model-free; normal repair uses the real SDK/CLI and may consume account capacity.
+- The target is a private temporary `seed/` copy. Never copy `grader/` or evaluator answers into it. Only `src/quote.js` is editable for repair; incomplete requests require zero changes. Keep all data fictional.
+- Capture the original Git baseline before the agent, retain it outside the checkout, and pass it explicitly to verification. Never diff only against agent-movable HEAD. Committed, ignored and newline-containing paths count. Recheck scope after public/private checks; do not run an altered out-of-scope package/test entry point.
+- Completion requires a final message, `turn.completed`, no pending work and clean stream exhaustion. Preserve original SDK events, partial changes and failures in private atomic reports throughout execution. Unknown provider usage/cost is not zero; SDK 0.162.1 defaults absent cache-write tokens to zero, so `agentResult.usage` is labeled SDK-normalized evidence.
+- Pinned SDK cleanup ordering matters: abort active work before returning its iterator. Do not abort an already failed/exhausted iterator after its child listeners were removed; actual synthetic-child tests reproduce the resulting unhandled AbortError. Preserve SDK-owned child/schema cleanup and caller-owned SDK configuration.
+- One runner owns each checkout. New invocation resets local files by making a fresh copy. Retain reports/workspace for inspection; removing a disposable checkout does not reset billing or configured Codex session/account state. Tests clean up their own generated fixtures/processes.
+- The scope guard is application validation, not a hostile-code sandbox. Checks execute/import synthetic code. Never use real customer repositories or expose credentials. Do not add production scripted fallbacks.
+- Prior live repair evidence is historical at 69125e6; do not describe controlled subprocess tests or new code as an additional paid model run. Four-profile dataset/package follow-up and released Firedrill/publication gates remain pending. No retired API or invented platform integration.
