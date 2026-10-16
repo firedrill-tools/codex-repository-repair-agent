@@ -16,7 +16,7 @@ The earlier24-check checkpoint and historical live run do not establish the newl
 
 ## Remaining independent gates
 
-Qualify all new source/native/normal CLI checks on Linux, complete deterministic source packaging and fresh locked installation with the entire suite outside the checkout, and update the exact catalog/portfolio evidence. Then return to #27 coherent cases/private CLI/source distribution and the remaining portfolio projects.
+[All74 source/native/normal CLI checks and the complete101-file fresh locked archive passed on Linux at d4000ee](https://github.com/firedrill-tools/codex-repository-repair-agent/actions/runs/38879878609). Original seven datasets/seed/vendors/grader and historical live proof remain unchanged. Update the exact catalog/portfolio evidence after final source CI. Then return to #27 coherent cases/private CLI/source distribution and the remaining portfolio projects.
 
 ## Parked
 

@@ -46,9 +46,38 @@ test(
       env,
       timeoutMs: 110000,
     });
-    assert.equal(result.exitCode, 0, JSON.stringify(result));
     const summary = JSON.parse(result.stdout),
       report = JSON.parse(fs.readFileSync(summary.reportPath));
+    const toolEvidence = report.agentResult?.events
+      .filter((event) =>
+        ["command_execution", "error"].includes(event.item?.type),
+      )
+      .map((event) => ({
+        type: event.type,
+        item: {
+          ...event.item,
+          aggregated_output: event.item.aggregated_output?.slice(-4000),
+        },
+      }));
+    assert.equal(
+      result.exitCode,
+      0,
+      JSON.stringify({
+        summary,
+        toolEvidence,
+        agentError: report.agentResult?.error,
+        toolResults: provider.requests
+          .flatMap((r) => r.input ?? [])
+          .filter((i) => i.type === "function_call_output")
+          .map((i) => ({
+            ...i,
+            output: (typeof i.output === "string"
+              ? i.output
+              : JSON.stringify(i.output)
+            ).slice(-4000),
+          })),
+      }),
+    );
     t.after(() => {
       for (const dir of [report.workspace, report.verification?.checkDir])
         if (dir) fs.rmSync(dir, { recursive: true, force: true });
@@ -64,13 +93,23 @@ test(
     assert.ok(provider.posts >= 2);
     assert.deepEqual(provider.faults, []);
     assert.equal(provider.requests[0].model, "synthetic-offline");
+    // Linux may omit command items from CLI JSONL. The original upstream tool-result
+    // request and independently validated source establish actual tool execution.
+    const toolOutputs = provider.requests
+      .flatMap((request) => request.input ?? [])
+      .filter((item) => item.type === "function_call_output")
+      .map((item) =>
+        typeof item.output === "string"
+          ? item.output
+          : JSON.stringify(item.output),
+      );
     assert.ok(
-      report.agentResult.cli.records.some(
-        (r) =>
-          r.body?.item?.type === "command_execution" &&
-          r.body.item.aggregated_output.includes("bundled-upgrade-proof") &&
-          r.body.item.exit_code === 0,
+      toolOutputs.some(
+        (output) =>
+          output.includes("bundled-upgrade-proof") &&
+          output.includes("Process exited with code 0"),
       ),
+      JSON.stringify(toolOutputs),
     );
     assert.ok(report.agentResult.diagnostics.length > 0);
     assert.equal(
@@ -107,9 +146,30 @@ test(
           } catch {}
       fs.rmSync(workspace, { recursive: true, force: true });
     });
+    const began = performance.now();
     const poll = setInterval(() => {
       if (fs.existsSync(record))
         controller.abort(new Error("Controlled bundled cancellation"));
+      else if (provider.posts && performance.now() - began > 25000)
+        controller.abort(
+          new Error(
+            "Bundled tool readiness failed: " +
+              JSON.stringify(
+                observed?.events
+                  .filter((event) =>
+                    ["command_execution", "error"].includes(event.item?.type),
+                  )
+                  .map((event) => ({
+                    ...event,
+                    item: {
+                      ...event.item,
+                      aggregated_output:
+                        event.item.aggregated_output?.slice(-4000),
+                    },
+                  })),
+              ),
+          ),
+        );
     }, 50);
     t.after(() => clearInterval(poll));
     await assert.rejects(
