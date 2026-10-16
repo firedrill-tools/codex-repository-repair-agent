@@ -2,3 +2,5 @@ node_modules/
 .runs/
 *.log
 *.tar.gz
+
+dist/
