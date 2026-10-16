@@ -100,6 +100,8 @@ for (const entry of entries) {
 }
 chunks.push(Buffer.alloc(1024));
 const bytes = gzipSync(Buffer.concat(chunks), { level: 9 });
+// RFC1952 OS=unknown keeps identical source bytes portable across zlib hosts.
+bytes[9] = 255;
 fs.mkdirSync(path.dirname(destination), { recursive: true });
 fs.writeFileSync(destination, bytes);
 fs.writeFileSync(
