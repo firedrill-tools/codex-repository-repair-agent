@@ -17,6 +17,8 @@ jobs:
       - run: npm run fixtures:build
       - run: git diff --exit-code -- datasets
       - run: npm test
+      - run: npm ci --prefix firedrill --ignore-scripts --no-audit --no-fund
+      - run: npm test --prefix firedrill
       - run: npm run check:package
       - run: npm run package
       - uses: actions/upload-artifact@v4

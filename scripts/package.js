@@ -18,6 +18,7 @@ const destination = path.resolve(
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const entries = [];
 function collect(relative) {
+  if (relative.split("/").some(name => ["node_modules", ".runs"].includes(name))) return;
   const file = path.join(root, relative),
     stat = fs.lstatSync(file);
   if (stat.isSymbolicLink()) throw new Error("Source archives reject aliases");
@@ -40,6 +41,7 @@ for (const name of [
   "COMPATIBILITY.md",
   "PLAN.md",
   "README.md",
+  "firedrill",
   "datasets",
   "evidence",
   "grader",

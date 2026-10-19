@@ -52,6 +52,7 @@ try {
       for (const name of fs
         .readdirSync(path.join(directory, relative))
         .sort()) {
+        if (name === "node_modules" || name === ".runs") continue;
         if (
           !relative &&
           ["node_modules", "SOURCE_MANIFEST.json"].includes(name)
@@ -142,6 +143,10 @@ try {
   if (failed.verification?.checkDir) owned.push(failed.verification.checkDir);
   assert.match(negative.agentError, /OPENAI_API_KEY required/);
   assert.equal(failed.status, "failed");
+  assert.ok(fs.existsSync(path.join(directory, "firedrill", "scenario.json")));
+  assert.equal(fs.existsSync(path.join(directory, "firedrill", "node_modules")), false);
+  await run("npm", ["ci", "--prefix", "firedrill", "--ignore-scripts", "--no-audit", "--no-fund"], directory);
+  console.log(await run("npm", ["test", "--prefix", "firedrill"], directory));
   const suite = await run("npm", ["test"], directory);
   verifyFiles();
   console.log(suite.split("\n").slice(-12).join("\n"));

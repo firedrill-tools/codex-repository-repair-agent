@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "2026-10-14",
+  "name": "Repository repair \u2014 native Codex SDK and independent verification",
+  "target": {
+    "kind": "command",
+    "argv": [
+      "node",
+      "firedrill/target.mjs"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "repair",
+      "name": "Bounded checkout repair",
+      "input": {
+        "caseId": "repair"
+      }
+    },
+    {
+      "id": "incomplete",
+      "name": "Clarify incomplete request without edits",
+      "input": {
+        "caseId": "incomplete"
+      }
+    },
+    {
+      "id": "already-repaired",
+      "name": "Verify existing repair without edits",
+      "input": {
+        "caseId": "already-repaired"
+      }
+    }
+  ],
+  "repetitions": 1,
+  "concurrency": 1,
+  "limits": {
+    "timeoutMs": 300000,
+    "maxRuns": 3,
+    "maxOutputBytes": 4194304
+  }
+}

@@ -14,3 +14,7 @@
 - Normal SDK uses the public executable relay and preserves original CLI bytes before SDK defaults. Observe actual host PID/PPID/PGID/state, freeze root/known separate job groups before signals, retain ownership through reparenting and qualify stalled-relay emergency cleanup. Never signal inherited application groups or trust model/namespace PIDs. Unknown inventory/exit fails. Keep observed ordinary jobs distinct from malicious escape/unobserved rapid daemonization/hard OS containment.
 - Command journals/atomic flushed private receipts precede dispatch; recording failure prevents subsequent checks. Source snapshots are bounded512 entries/1MiB files/8MiB total. Original CLI/SDK/provider usage remain separate. Documented nonfatal diagnostics may recover only with coherent terminal success and independent checks.
 - Keep the full deterministic source manifest, CI/docs/historical evidence and tests in the archive. Fresh locked extraction must rerun all74 checks, including actual bundled loopback tools, without paid inference. CLI signals publish failed receipts after owned cleanup and retain edits.
+
+## Current Firedrill integration
+
+Released CLI/SDK 2.2.2, current command targets, remote operator MCP and recovery are documented in [firedrill/README.md](firedrill/README.md). Optional integration tests and the complete source archive gate remain model-free. Authenticated persisted runs and refreshed paid quality/cost checks remain separate.
