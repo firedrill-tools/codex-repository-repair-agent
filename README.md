@@ -4,6 +4,8 @@ A standalone Codex SDK application gives a coding agent a synthetic checkout, as
 
 Simulate this Codex SDK AI agent with [Firedrill](https://firedrill.run/), a simulation platform for AI agents. Start with the [Firedrill setup and simulation guide](firedrill/README.md); your coding agent can operate it while this application's runner stays in your repository or CI.
 
+This example repository is publicly viewable. A project license has not been selected.
+
 ## Run
 
 Requires Node 20+, Git, npm and `OPENAI_API_KEY` for normal model execution. Help, dataset initialization and verification need no provider access.
@@ -64,14 +66,14 @@ npm run package
 
 The deterministic0.3.0 source archive contains101 files: runtime/tests/helpers, all data, authoring template, external grader, scripts, CI, docs and unchanged historical evidence. SOURCE_MANIFEST.json binds every source file hash/size/mode; a checksum accompanies the archive. Its gate rebuilds identical bytes, extracts outside the checkout, verifies exact inventory, installs locked dependencies, regenerates unchanged fixtures, exercises CLI/help/list/all seven baselines/missing-key failure and reruns the entire74-check suite including actual bundled loopback tools. No paid inference or real provider credentials are used. Default artifact: `dist/codex-repository-repair-agent-0.3.0-source.tar.gz`.
 
-Explore the [example catalog](https://github.com/firedrill-tools/firedrill-example-catalog), [Firedrill](https://firedrill.run/) and [official developer documentation](https://docs.firedrill.run/). The checked-in adapter uses the released interface; authenticated persisted-run verification remains separate. Public visibility/license approval remains external.
+Explore the [example catalog](https://github.com/firedrill-tools/firedrill-example-catalog), [Firedrill](https://firedrill.run/) and [official developer documentation](https://docs.firedrill.run/). The checked-in adapter uses the released interface; authenticated persisted-run verification remains separate. A project license has not been selected.
 
 
 ## Reopened boundary qualification
 
 74 offline checks pass locally, including the reproduced assume-unchanged protected edit, coherent source materialization/continuity, private modes, original CLI/SDK provenance, ignored signals/separate tool groups, stalled relay, recording faults and normal CLI success/SIGINT/SIGTERM/SIGHUP/cancellation after edits. The complete74-check suite also passed from a fresh locked source archive outside this checkout. Actual bundled tool tests use synthetic loopback Responses, not model judgment. [Linux74-check/fresh-archive CI passed at d4000ee](https://github.com/firedrill-tools/codex-repository-repair-agent/actions/runs/38879878609); historical live proof remains unchanged.
 
-Supported nonfatal error items/recovered transport diagnostics remain original evidence and cannot establish completion on their own. Coherent terminal success, no pending work, a nonblank final answer and independent source/check authority are still required. Failed/partial attempts retain actual edits and failed evidence. Source snapshots/flushes are local bounded work; no hard whole-run wall time, heap, provider retry/billing or hostile-code OS containment is claimed. Refreshed live and authenticated Firedrill persistence/publication/license gates remain parked in [PLAN.md](PLAN.md).
+Supported nonfatal error items/recovered transport diagnostics remain original evidence and cannot establish completion on their own. Coherent terminal success, no pending work, a nonblank final answer and independent source/check authority are still required. Failed/partial attempts retain actual edits and failed evidence. Source snapshots/flushes are local bounded work; no hard whole-run wall time, heap, provider retry/billing or hostile-code OS containment is claimed. Refreshed live and authenticated Firedrill persistence/license gates remain parked in [PLAN.md](PLAN.md).
 
 Linux native tool checks require host support for the bundled sandbox. Ubuntu24's default AppArmor user-namespace restriction can reject the pinned CLI's embedded bubblewrap before a command runs. Disposable GitHub CI explicitly installs a temporary `userns` profile attached only to that installed binary (and the fresh archive binary), then removes it. No global sysctl changes or application sandbox bypass is used; normal application execution never changes host policy. See [Ubuntu release notes](https://documentation.ubuntu.com/release-notes/24.04/) and the [upstream Codex report](https://github.com/openai/codex/issues/14919).
 
