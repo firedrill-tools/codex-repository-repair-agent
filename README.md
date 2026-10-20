@@ -66,7 +66,7 @@ npm run package
 
 The deterministic0.3.0 source archive contains101 files: runtime/tests/helpers, all data, authoring template, external grader, scripts, CI, docs and unchanged historical evidence. SOURCE_MANIFEST.json binds every source file hash/size/mode; a checksum accompanies the archive. Its gate rebuilds identical bytes, extracts outside the checkout, verifies exact inventory, installs locked dependencies, regenerates unchanged fixtures, exercises CLI/help/list/all seven baselines/missing-key failure and reruns the entire74-check suite including actual bundled loopback tools. No paid inference or real provider credentials are used. Default artifact: `dist/codex-repository-repair-agent-0.3.0-source.tar.gz`.
 
-Explore the [example catalog](https://github.com/firedrill-tools/firedrill-example-catalog), [Firedrill](https://firedrill.run/) and [official developer documentation](https://docs.firedrill.run/). The checked-in adapter uses the released interface; authenticated persisted-run verification remains separate. A project license has not been selected.
+Explore the [Firedrill examples](https://docs.firedrill.run/guides/examples), [Firedrill](https://firedrill.run/) and [official developer documentation](https://docs.firedrill.run/). The checked-in adapter uses the released interface; authenticated persisted-run verification remains separate. A project license has not been selected.
 
 
 ## Reopened boundary qualification
